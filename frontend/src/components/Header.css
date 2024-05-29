@@ -1,0 +1,69 @@
+/* Header styles */
+header {
+    display: flex;
+    height: 130px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #1a237e;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* Logo styles */
+.logo {
+    width: 325px;
+    margin-right: 1rem;
+}
+
+/* Navigation styles */
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 2px solid white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #1a237e;
+}
+
+/* Styles for the sign-in and sign-up buttons */
+nav .button-signin {
+    background-color: transparent;
+}
+
+nav .button-signup {
+    background-color: white;
+    color: #1a237e;
+}
+
+nav .button-signup:hover {
+    background-color: #f0f0f0;
+}
+
+/* Styles for the profile and logout buttons */
+nav .button-profile,
+nav .button-logout {
+    background-color: #f0f0f0;
+    color: #1a237e;
+}
+
+nav .button-profile:hover,
+nav .button-logout:hover {
+    background-color: #d3d3d3;
+}

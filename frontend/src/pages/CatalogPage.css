@@ -1,0 +1,97 @@
+.catalog-page {
+  font-family: Arial, sans-serif;
+  color: #333;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.banner {
+  position: relative;
+  background-image: url('../public/assets/zabuza/zabuza.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #1a237e;
+  text-align: center;
+  padding: 120px 0;
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+.catalog-container {
+  padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.catalog-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.advanced-search-button-container,
+.wishlist-button-container {
+  margin-bottom: 5px;
+}
+
+.advanced-search-button,
+.wishlist-button {
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.filters input[type="text"] {
+  padding: 5px;
+  font-size: 1em;
+  background-color: #f0f0f0;
+  border: none;
+  color: #000000;
+}
+
+.filters select,
+.filters label {
+  padding: 5px;
+  font-size: 1em;
+  background-color: #f0f0f0;
+  border: none;
+}
+
+.filters input[type="checkbox"] {
+  background-color: #1a227e9a;
+}
+
+.filters select {
+  background-color: #1a227e9a;
+  color: white;
+}
+
+.filters label {
+  background-color: #1a227e9a;
+  color: white;
+}
+

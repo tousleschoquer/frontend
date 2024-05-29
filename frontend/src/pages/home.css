@@ -1,0 +1,199 @@
+/* Styles de base pour la homepage */
+body {
+  background-color: #00000088; /* Couleur de fond noir avec une légère opacité */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white; /* Assurez-vous que le texte est visible sur le fond sombre */
+}
+
+.homepage {
+  background-color: #00000088; /* Couleur de fond noir avec une légère opacité */
+  padding: 20px; /* Ajoutez du padding pour un meilleur espacement */
+}
+
+.nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff; /* Changez la couleur du texte des liens pour les rendre visibles */
+}
+
+.search-bar input {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.hero {
+  position: relative; /* Permet de positionner la superposition par rapport à l'image */
+}
+
+.hero-overlay {
+  width: 100%;
+  position: absolute;
+  top: 33%; /* Centre verticalement le texte */
+  left: 50%; /* Centre horizontalement le texte */
+  transform: translate(-50%, -50%); /* Ajuste la position du texte */
+  /* background-color: rgba(0, 0, 0, 0.7);  Couleur de fond semi-transparente */
+  color: white; /* Couleur du texte */
+  /* padding: 1rem;  Ajoutez un peu d'espace autour du texte */
+  text-align: center; /* Centre le texte horizontalement */
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+}
+
+.hero-text {
+  text-align: center; /* Centrer le texte horizontalement */
+  color: #fff; /* Couleur du texte (personnalisez selon vos préférences) */
+  margin-top: 2rem; /* Ajoutez une marge en haut pour l'éloigner de l'image */
+}
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.manga-grid {
+  padding: 20px; /* Ajoute de l'espace autour de la section manga */
+}
+
+.manga-grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacement entre les mangas */
+}
+
+.manga-grid-item {
+  width: calc(25% - 20px); /* Quatre mangas par ligne avec un espace de 20px entre eux */
+  text-align: center; /* Centre le contenu du manga */
+  ; /* Couleur de fond pour chaque manga */
+  border-radius: 10px; /* Coins arrondis pour chaque manga */
+  padding: 10px; /* Ajoute de l'espace à l'intérieur de chaque manga */
+}
+
+.manga-image-extra-small {
+  width: 80%; /* Taille réduite de l'image */
+  height: auto; /* Maintient le ratio hauteur-largeur */
+  margin: 0 auto; /* Centre l'image horizontalement */
+}
+
+.manga-title {
+  font-size: 1em; /* Taille de la police pour le titre */
+  margin-top: 10px; /* Marge supérieure pour le titre */
+  color: #FFF; /* Couleur du titre */
+}
+
+.manga-category {
+  font-size: 0.9em; /* Taille de la police pour la catégorie */
+  margin-top: 5px; /* Marge supérieure pour la catégorie */
+  color: #BBB; /* Couleur de la catégorie */
+}
+
+.manga-availability {
+  font-size: 0.9em; /* Taille de la police pour la disponibilité */
+  margin-top: 5px; /* Marge supérieure pour la disponibilité */
+  color: #BBB; /* Couleur de la disponibilité */
+}
+
+.user-reviews {
+  padding: 20px;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.review-header {
+  font-size: 0.9rem; /* Réduire la taille de l'en-tête */
+  text-align: left; /* Aligner le texte de l'en-tête à gauche */
+  margin-bottom: 10px;
+}
+
+.review-content {
+  display: flex;
+}
+
+.review-text {
+  flex: 1;
+  text-align: right; /* Aligner le texte du commentaire à gauche */
+}
+
+.review-stars {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.star,
+.star-outline {
+  width: 18px;
+  height: 18px;
+  margin-right: 2px;
+}
+
+.star {
+  fill: #FFD700; /* Couleur jaune pour les étoiles remplies */
+}
+
+.star-outline {
+  fill: none;
+  stroke: #FFD700; /* Contour jaune pour les étoiles non remplies */
+  stroke-width: 2px;
+}
+
+.footer {
+  padding: 20px;
+  background-color: #333; /* Couleur de fond du footer pour le rendre plus visible */
+  text-align: center;
+  border-top: 1px solid #ddd;
+  color: white; /* Couleur du texte du footer */
+}
+
+.footer-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white; /* Changez la couleur du texte des liens pour les rendre visibles */
+}
+
+.social-media {
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Pour placer les boutons aux extrémités */
+  margin-top: 20px;
+}
+
+.advanced-search-button-container,
+.wishlist-button-container {
+  margin-bottom: 5px; /* Ajoute de l'espace en bas */
+}
+
+/* Styles spécifiques pour les boutons */
+.advanced-search-button,
+.wishlist-button {
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Ajoutez d'autres styles si nécessaire */

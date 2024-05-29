@@ -1,0 +1,83 @@
+/* styles.css */
+body {
+    background-color: #00000088; /* Remplacez par la couleur de fond souhaitée */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    max-width: 1200px; /* Largeur maximale pour toutes les pages */
+    margin: 0 auto; /* Centre le contenu horizontalement */
+    padding: 20px; /* Ajoutez du padding pour l'espacement */
+  }
+  
+  header {
+    width: 100%; /* Assure que le header prend toute la largeur */
+    display: flex;
+    height: 130px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #1a237e;
+    color: white;
+    box-sizing: border-box;
+  }
+  
+  .logo {
+    width: 300px;
+    margin-right: 1rem;
+  }
+  
+  nav {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 2px solid white;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: white;
+    color: #121212;
+    text-decoration: none;
+  }
+  
+  nav .button-signin {
+    background-color: transparent;
+  }
+  
+  nav .button-signup {
+    background-color: white;
+    color: #121212;
+  }
+  
+  nav .button-signup:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .footer {
+    padding: 20px;
+    background-color: #f8f8f8;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+  
+  .footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .social-media {
+    margin-top: 10px;
+  }
+  
