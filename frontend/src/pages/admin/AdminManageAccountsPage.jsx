@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Box, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, MenuItem } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import LockIcon from '@mui/icons-material/Lock';
 import HeadsetIcon from '@mui/icons-material/Headset';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import axios from 'axios';
@@ -14,8 +12,6 @@ const AdminManageAccountsPage = () => {
   const [users, setUsers] = useState([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const [lockDialogOpen, setLockDialogOpen] = useState(false);
-  const [lockAction, setLockAction] = useState({ userId: null, lock: false });
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editUser, setEditUser] = useState({ userId: null, field: '', value: '' });
   const [changeRoleDialogOpen, setChangeRoleDialogOpen] = useState(false);
@@ -70,20 +66,6 @@ const AdminManageAccountsPage = () => {
     }
   };
 
-  const handleLockDialogOpen = (userId, lock) => {
-    setLockAction({ userId, lock });
-    setLockDialogOpen(true);
-  };
-
-  const handleLockUser = async () => {
-    try {
-      await axios.put(`http://localhost:4000/api/user/${lockAction.userId}`, { locked: lockAction.lock }); // URL du backend pour verrouiller/déverrouiller un utilisateur
-      setUsers(users.map(user => user._id === lockAction.userId ? { ...user, locked: lockAction.lock } : user));
-      setLockDialogOpen(false);
-    } catch (error) {
-      console.error('Error updating user lock status:', error);
-    }
-  };
 
   const handleEditDialogOpen = (userId) => {
     setEditUser({ userId, field: '', value: '' });
@@ -132,7 +114,6 @@ const AdminManageAccountsPage = () => {
                 <TableCell sx={{ color: 'white' }}>E-mail</TableCell>
                 <TableCell sx={{ color: 'white' }}>Mot de passe</TableCell>
                 <TableCell sx={{ color: 'white' }}>Admin</TableCell>
-                <TableCell sx={{ color: 'white' }}>Statut</TableCell>
                 <TableCell sx={{ color: 'white' }}>Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -143,13 +124,9 @@ const AdminManageAccountsPage = () => {
                   <TableCell sx={{ color: 'white' }}>{user.email}</TableCell>
                   <TableCell sx={{ color: 'white' }}>{user.password}</TableCell>
                   <TableCell sx={{ color: 'white' }}>{user.admin ? 'True' : 'False'}</TableCell>
-                  <TableCell sx={{ color: 'white' }}>{user.locked ? 'Verrouillé' : 'Actif'}</TableCell>
                   <TableCell>
                     <IconButton onClick={() => handleDeleteUserDialogOpen(user._id)}><DeleteIcon sx={{ color: 'white' }} /></IconButton>
                     <IconButton onClick={() => handleEditDialogOpen(user._id)}><EditIcon sx={{ color: 'white' }} /></IconButton>
-                    <IconButton onClick={() => handleLockDialogOpen(user._id, !user.locked)}>
-                      {user.locked ? <LockOpenIcon sx={{ color: 'white' }} /> : <LockIcon sx={{ color: 'white' }} />}
-                    </IconButton>
                     <IconButton onClick={() => handleRoleChangeDialogOpen(user._id)}>
                       <HeadsetIcon sx={{ color: 'white' }} />
                     </IconButton>
@@ -173,20 +150,6 @@ const AdminManageAccountsPage = () => {
         </DialogActions>
       </Dialog>
 
-      <Dialog open={lockDialogOpen} onClose={() => setLockDialogOpen(false)}>
-        <DialogTitle>Confirmer l'action</DialogTitle>
-        <DialogContent>
-          <Typography variant="body1">
-            Êtes-vous sûr de vouloir {lockAction.lock ? 'déverrouiller' : 'verrouiller'} ce compte utilisateur ?
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setLockDialogOpen(false)}>Annuler</Button>
-          <Button onClick={handleLockUser} variant="contained" color="primary">
-            {lockAction.lock ? 'Déverrouiller' : 'Verrouiller'}
-          </Button>
-        </DialogActions>
-      </Dialog>
 
       <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)}>
         <DialogTitle>Éditer le compte utilisateur</DialogTitle>

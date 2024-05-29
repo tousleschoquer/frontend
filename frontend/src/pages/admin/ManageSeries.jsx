@@ -4,8 +4,11 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import axios from 'axios';
 import { Link as RouterLink } from 'react-router-dom';
+import { useProfile } from  '../../hooks/useProfile';
+
 
 const ManageSeries = () => {
+  
   const [newSerie, setNewSerie] = useState({
     name: '',
     author: '',
@@ -20,8 +23,14 @@ const ManageSeries = () => {
   const [errorDialogOpen, setErrorDialogOpen] = useState(false);
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
   const [serieToDelete, setSerieToDelete] = useState(null);
+  const { profile } = useProfile();
 
   useEffect(() => {
+    if (!profile || !profile.admin) {
+      // Si l'utilisateur n'est pas administrateur, redirigez-le ou affichez un message d'accès refusé
+      console.log('Access denied for user:', profile);
+      return;
+    }
     const fetchSeries = async () => {
       try {
         const response = await axios.get('http://localhost:4000/api/serie');
@@ -42,7 +51,7 @@ const ManageSeries = () => {
 
     fetchSeries();
     fetchCategories();
-  }, []);
+  }, [profile]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,19 +91,12 @@ const ManageSeries = () => {
 
   const confirmDeleteSerie = async () => {
     try {
-      // Supprimer la série
       await axios.delete(`http://localhost:4000/api/serie/${serieToDelete}`);
-
-      // Récupérer tous les mangas associés à la série
       const response = await axios.get(`http://localhost:4000/api/manga?serie=${serieToDelete}`);
       const mangasToDelete = response.data;
-
-      // Supprimer chaque manga associé à la série
       await Promise.all(mangasToDelete.map(async (manga) => {
         await axios.delete(`http://localhost:4000/api/manga/${manga._id}`);
       }));
-
-      // Mettre à jour la liste des séries après la suppression
       const seriesResponse = await axios.get('http://localhost:4000/api/serie');
       setSeries(seriesResponse.data);
     } catch (error) {
@@ -136,6 +138,20 @@ const ManageSeries = () => {
   const handleCancel = () => {
     setConfirmDialogOpen(false);
   };
+
+  if (!profile || !profile.admin) {
+    // Affichez un message d'accès refusé si l'utilisateur n'est pas administrateur
+    return (
+      <div>
+        <Header />
+        <Box sx={{ padding: 2 }}>
+          <Typography variant="h4">Accès refusé</Typography>
+          <Typography variant="body1">Vous devez être connecté en tant qu'administrateur pour accéder à cette page.</Typography>
+        </Box>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -201,8 +217,8 @@ const ManageSeries = () => {
               InputProps={{
                 style: { color: 'black' }
               }}
-              multiline // Ajout de la propriété multiline pour permettre l'extension du champ
-              rows={7} // Nombre de lignes initiales
+              multiline 
+              rows={7}
             />
             <Button variant="contained" color="primary" onClick={handleAddSerie} sx={{ marginBottom: '16px' }}>
               Ajouter Série
@@ -237,7 +253,6 @@ const ManageSeries = () => {
 
       <Footer />
 
-      {/* Boîte de dialogue de confirmation pour la suppression */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
         <DialogTitle sx={{ color: 'black' }}>Confirmation de la suppression</DialogTitle>
         <DialogContent sx={{ color: 'black' }}>
@@ -249,7 +264,6 @@ const ManageSeries = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Boîte de dialogue d'erreur si tous les champs ne sont pas remplis */}
       <Dialog open={errorDialogOpen} onClose={() => setErrorDialogOpen(false)}>
         <DialogTitle sx={{ color: 'black' }}>Erreur</DialogTitle>
         <DialogContent sx={{ color: 'black' }}>
@@ -260,7 +274,6 @@ const ManageSeries = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Boîte de dialogue de confirmation pour l'ajout de série */}
       <Dialog open={confirmDialogOpen} onClose={handleCancel}>
         <DialogTitle sx={{ color: 'black' }}>Confirmation</DialogTitle>
         <DialogContent sx={{ color: 'black' }}>

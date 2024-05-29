@@ -3,13 +3,21 @@ import axios from 'axios';
 import { Typography, Box, Grid, Card, CardContent, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { useProfile } from '../../hooks/useProfile'; // Assurez-vous d'importer le hook useProfile
 
 const ManageBorrow = () => {
   const [borrows, setBorrows] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [requestToDelete, setRequestToDelete] = useState(null);
+  const { profile } = useProfile(); // Utilisez le hook useProfile pour obtenir les informations de l'utilisateur
 
   useEffect(() => {
+    if (!profile || !profile.admin) {
+      // Si l'utilisateur n'est pas administrateur, redirigez-le ou affichez un message d'accès refusé
+      console.log('Access denied for user:', profile);
+      return;
+    }
+
     const fetchBorrows = async () => {
       try {
         const response = await axios.get('http://localhost:4000/api/borrow');
@@ -20,7 +28,21 @@ const ManageBorrow = () => {
     };
 
     fetchBorrows();
-  }, []);
+  }, [profile]);
+
+  if (!profile || !profile.admin) {
+    // Affichez un message d'accès refusé si l'utilisateur n'est pas administrateur
+    return (
+      <div>
+        <Header />
+        <Box sx={{ padding: 2 }}>
+          <Typography variant="h4">Accès refusé</Typography>
+          <Typography variant="body1">Vous devez être connecté en tant qu'administrateur pour accéder à cette page.</Typography>
+        </Box>
+        <Footer />
+      </div>
+    );
+  }
 
   const handleConfirmFinish = (id) => {
     setRequestToDelete(id);

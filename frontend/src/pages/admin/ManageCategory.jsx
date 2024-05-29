@@ -3,15 +3,23 @@ import { Typography, Box, Button, TextField, Grid, Card, CardContent } from '@mu
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import axios from 'axios';
+import { useProfile } from '../../hooks/useProfile';
+
 
 const ManageCategory = () => {
   const [newCategory, setNewCategory] = useState('');
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const { profile } = useProfile();
 
   useEffect(() => {
+    if (!profile || !profile.admin) {
+      // Si l'utilisateur n'est pas administrateur, redirigez-le ou affichez un message d'accès refusé
+      console.log('Access denied for user:', profile);
+      return;
+    }
     fetchCategories();
-  }, []);
+  }, [profile]);
 
   const fetchCategories = async () => {
     try {
@@ -49,6 +57,20 @@ const ManageCategory = () => {
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  if (!profile || !profile.admin) {
+    // Affichez un message d'accès refusé si l'utilisateur n'est pas administrateur
+    return (
+      <div>
+        <Header />
+        <Box sx={{ padding: 2 }}>
+          <Typography variant="h4">Accès refusé</Typography>
+          <Typography variant="body1">Vous devez être connecté en tant qu'administrateur pour accéder à cette page.</Typography>
+        </Box>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header />
@@ -62,9 +84,9 @@ const ManageCategory = () => {
               variant="outlined"
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
-              style={{ backgroundColor: '#F0F0F0', marginBottom: '16px' }} // Styles communs
+              style={{ backgroundColor: '#F0F0F0', marginBottom: '16px' }} 
               InputProps={{
-                style: { color: 'black' } // Style pour la couleur du texte
+                style: { color: 'black' }
               }}
             />
           </Grid>
@@ -82,9 +104,9 @@ const ManageCategory = () => {
               variant="outlined"
               value={searchTerm}
               onChange={handleSearch}
-              style={{ backgroundColor: '#F0F0F0', marginBottom: '16px' }} // Styles communs
+              style={{ backgroundColor: '#F0F0F0', marginBottom: '16px' }} 
               InputProps={{
-                style: { color: 'black' } // Style pour la couleur du texte
+                style: { color: 'black' }
               }}
             />
           </Grid>
