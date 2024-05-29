@@ -1,9 +1,0 @@
-.addToWishlistButton {
-    /* Personnalisation de la forme du bouton */
-    /* border-radius: 50%;  Rendre le bouton rond */
-    width: 200px; /* Largeur du bouton */
-    height: 40px; /* Hauteur du bouton */
-    padding: 0; /* Supprimer le rembourrage interne */
-    background-color: #1a227e9a; /* Couleur de fond */
-  }
-  
