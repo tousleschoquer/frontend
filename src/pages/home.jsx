@@ -7,23 +7,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import MangaList from '../components/MangaList';
 
-const reviews = [
-  {
-    user: 'lamenace26',
-    review: 'Plein de mangas! Excellent!',
-    rating: 4,
-  },
-  {
-    user: 'asmae-chan',
-    review: 'Je déteste le site, il manque de style...',
-    rating: 2,
-  },
-  {
-    user: 'ledzsucreyyyyyyyyyy',
-    review: "OLALA C'EST QUOI CE POULET !!!",
-    rating: 5,
-  }
-];
 
 // Add more manga IDs to the arrays
 const popularMangasIds = [
@@ -81,6 +64,7 @@ const HomePage = () => {
         <p>Bienvenue sur notre site de mangas! Ici, vous trouverez une sélection des mangas les plus populaires et des recommandations de notre équipe. N'hésitez pas à explorer et à découvrir de nouvelles histoires passionnantes. Bonne lecture! 
         </p>
         <p>Ce site n'était qu'un premier pas dans le but de rendre plus instinctif, épuré et facile l'interface d'emprunt des livres par internet aux utilisateurs, qui peuvent être des enfants en plein éveil ou bien même des personnes âgées trop peu initiées aux outils informatiques. Cette facilité à naviguer vaut aussi pour les personnes s'occupant des livres, qui pourront manipuler les données en quelques clics et sans la moindre difficulté. Profitez bien !</p>
+        <p>Remerciements : Merci Yanis Baroudi et Wayne Wan Chow Wah. </p>
       </div>
       <Footer />
     </div>
