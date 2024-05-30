@@ -12,7 +12,7 @@ const BorrowButton = ({ mangaId }) => {
     const checkAvailability = async () => {
       try {
         // Vérifier si le manga est disponible
-        const response = await axios.get(`http://localhost:4000/api/manga/${mangaId}`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${mangaId}`);
         const manga = response.data;
         setButtonDisabled(!manga.available); // Désactiver le bouton si le manga n'est pas disponible
         setButtonText(manga.available ? 'Emprunter' : 'Indisponible');
@@ -40,11 +40,11 @@ const BorrowButton = ({ mangaId }) => {
       };
 
       // Envoyer une requête POST pour créer l'emprunt
-      const borrowResponse = await axios.post('http://localhost:4000/api/borrow', borrowData);
+      const borrowResponse = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/borrow`, borrowData);
       console.log('Emprunt créé avec succès:', borrowResponse.data);
 
       // Mettre à jour la disponibilité des mangas empruntés
-      await axios.put(`http://localhost:4000/api/manga/${mangaId}`, { available: false });
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${mangaId}`, { available: false });
       console.log(`Disponibilité du manga ${mangaId} mise à jour avec succès.`);
 
       // Mettre à jour l'état pour désactiver le bouton après confirmation de l'emprunt

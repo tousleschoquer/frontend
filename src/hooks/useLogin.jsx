@@ -13,7 +13,7 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post('http://localhost:4000/api/user/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/login`, { email, password });
 
       // No need to parse JSON manually, axios does it for you
       const data = response.data;

@@ -14,7 +14,7 @@ export const useProfile = () => {
         try {
           console.log(`Fetching profile for user ID: ${user._id}`);
           console.log(`Username: ${user.username}`); // Affichage du nom d'utilisateur
-          const response = await axiosInstance.get(`http://localhost:4000/api/user/${user._id}`);
+          const response = await axiosInstance.get(`${process.env.REACT_APP_BACKEND_URL}/api/user/${user._id}`);
           setProfile(response.data);
           console.log('Profile fetched successfully:', response.data);
         } catch (error) {

@@ -14,7 +14,7 @@ export const useSignup = () => {
         setSuccess(false);
 
         try {
-            const response = await axios.post(`http://localhost:4000/api/user/signup`, {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/signup`, {
                 username,
                 email,
                 password
