@@ -33,7 +33,7 @@ const ManageSeries = () => {
     }
     const fetchSeries = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/serie');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/serie`);
         setSeries(response.data);
       } catch (error) {
         console.error('Error fetching series:', error);
@@ -42,7 +42,7 @@ const ManageSeries = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/category');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category`);
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -63,8 +63,8 @@ const ManageSeries = () => {
 
   const createSerieInstance = async () => {
     try {
-      await axios.post('http://localhost:4000/api/serie', newSerie);
-      const response = await axios.get('http://localhost:4000/api/serie');
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/serie`, newSerie);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/serie`);
       setSeries(response.data);
     } catch (error) {
       console.error('Error creating series:', error);
@@ -91,13 +91,13 @@ const ManageSeries = () => {
 
   const confirmDeleteSerie = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/serie/${serieToDelete}`);
-      const response = await axios.get(`http://localhost:4000/api/manga?serie=${serieToDelete}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/serie/${serieToDelete}`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga?serie=${serieToDelete}`);
       const mangasToDelete = response.data;
       await Promise.all(mangasToDelete.map(async (manga) => {
-        await axios.delete(`http://localhost:4000/api/manga/${manga._id}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${manga._id}`);
       }));
-      const seriesResponse = await axios.get('http://localhost:4000/api/serie');
+      const seriesResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/serie`);
       setSeries(seriesResponse.data);
     } catch (error) {
       console.error('Error deleting series and associated mangas:', error);

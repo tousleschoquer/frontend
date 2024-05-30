@@ -41,7 +41,7 @@ const HomePage = () => {
     const fetchMangasDetails = async () => {
       try {
         const popularDetails = await Promise.all(popularMangasIds.map(async (id) => {
-          const response = await axios.get(`http://localhost:4000/api/manga/${id}`);
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${id}`);
           return response.data;
         }));
         setPopularMangasDetails(popularDetails);

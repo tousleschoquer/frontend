@@ -24,7 +24,7 @@ const ManageManga = () => {
   useEffect(() => {
     const fetchMangas = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/manga');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga`);
         setMangas(response.data);
       } catch (error) {
         console.error('Error fetching mangas:', error);
@@ -33,7 +33,7 @@ const ManageManga = () => {
 
     const fetchSeries = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/serie');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/serie`);
         setSeries(response.data);
       } catch (error) {
         console.error('Error fetching series:', error);
@@ -42,7 +42,7 @@ const ManageManga = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/category');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category`);
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -65,9 +65,9 @@ const ManageManga = () => {
   const createMangaInstance = async () => {
     try {
       // Créer une instance avec les valeurs saisies et available=true
-      await axios.post('http://localhost:4000/api/manga', { ...newManga, available: true });
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/manga`, { ...newManga, available: true });
       // Rafraîchir la liste des mangas après ajout
-      const response = await axios.get('http://localhost:4000/api/manga');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga`);
       setMangas(response.data);
     } catch (error) {
       console.error('Error creating manga:', error);
@@ -96,9 +96,9 @@ const ManageManga = () => {
 
   const confirmDeleteManga = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/manga/${mangaToDelete}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${mangaToDelete}`);
       // Rafraîchir la liste des mangas après suppression
-      const response = await axios.get('http://localhost:4000/api/manga');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga`);
       setMangas(response.data);
     } catch (error) {
       console.error('Error deleting manga:', error);

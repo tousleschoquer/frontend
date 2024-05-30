@@ -27,7 +27,7 @@ const AdminManageAccountsPage = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/user'); // URL du backend pour récupérer tous les utilisateurs
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user`); // URL du backend pour récupérer tous les utilisateurs
         setUsers(response.data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -58,7 +58,7 @@ const AdminManageAccountsPage = () => {
 
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/user/${selectedUserId}`); // URL du backend pour supprimer un utilisateur par son ID
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/user/${selectedUserId}`); // URL du backend pour supprimer un utilisateur par son ID
       setUsers(users.filter(user => user._id !== selectedUserId));
       setDeleteDialogOpen(false);
     } catch (error) {
@@ -78,7 +78,7 @@ const AdminManageAccountsPage = () => {
 
   const handleEditUserSave = async () => {
     try {
-      await axios.put(`http://localhost:4000/api/user/${editUser.userId}`, { [editUser.field]: editUser.value }); // URL du backend pour mettre à jour un utilisateur
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/user/${editUser.userId}`, { [editUser.field]: editUser.value }); // URL du backend pour mettre à jour un utilisateur
       setUsers(users.map(user => user._id === editUser.userId ? { ...user, [editUser.field]: editUser.value } : user));
       setEditDialogOpen(false);
     } catch (error) {
@@ -95,7 +95,7 @@ const AdminManageAccountsPage = () => {
     try {
       const selectedUser = users.find(user => user._id === selectedUserForRoleChange);
       if (!selectedUser.admin) { // Vérifier que l'utilisateur n'est pas déjà administrateur
-        const updatedUser = await axios.put(`http://localhost:4000/api/user/${selectedUserForRoleChange}`, { admin: true }); // URL du backend pour changer le rôle d'un utilisateur
+        const updatedUser = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/user/${selectedUserForRoleChange}`, { admin: true }); // URL du backend pour changer le rôle d'un utilisateur
         setUsers(users.map(user => user._id === selectedUserForRoleChange ? updatedUser.data : user));
         setChangeRoleDialogOpen(false);
       } else {

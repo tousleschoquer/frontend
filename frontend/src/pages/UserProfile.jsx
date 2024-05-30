@@ -25,7 +25,7 @@ const UserProfile = () => {
     const fetchRecommendedManga = async () => {
       try {
         console.log('Fetching recommended manga...');
-        const response = await axiosInstance.get(`http://localhost:4000/api/manga/6655278c070fff0e14f1b7b0`);
+        const response = await axiosInstance.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga/6655278c070fff0e14f1b7b0`);
         console.log('Recommended manga fetched:', response.data);
         setRecommendedManga(response.data);
       } catch (error) {

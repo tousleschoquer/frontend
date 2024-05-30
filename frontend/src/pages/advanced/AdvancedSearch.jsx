@@ -28,18 +28,18 @@ const AdvancedSearch = () => {
   useEffect(() => {
     const fetchMangas = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/manga/');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga/`);
         const mangasData = response.data;
 
         // Fetch series and category details
         const mangasWithDetails = await Promise.all(mangasData.map(async (manga) => {
           if (manga.series) {
             try {
-              const seriesResponse = await axios.get(`http://localhost:4000/api/serie/${manga.series}`);
+              const seriesResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/serie/${manga.series}`);
               const seriesData = seriesResponse.data;
 
               if (seriesData.category) {
-                const categoryResponse = await axios.get(`http://localhost:4000/api/category/${seriesData.category}`);
+                const categoryResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category/${seriesData.category}`);
                 const categoryData = categoryResponse.data;
 
                 return {
@@ -72,7 +72,7 @@ const AdvancedSearch = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/category');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category`);
         setCategories(response.data);
         console.log('Fetched categories:', response.data);
       } catch (error) {

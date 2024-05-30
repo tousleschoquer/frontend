@@ -44,7 +44,6 @@ createRoot(document.getElementById('root')).render(
           <Route path="admin/manage-borrows" element={<ManageBorrow />} /> {/* page de gestion des auteurs */}
           <Route path="feedback" element={<Feedback />} /> {/* page des notations */}
           <Route path="faq" element={<FaqPage />} /> {/* page de la faq et du service client */}
-          <Route path="proposal" element={<SeriesProposalPage />} /> {/* page de proposition de nouvelle serie*/}
         </Route>
       </Routes>
     </Router>

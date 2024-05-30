@@ -18,14 +18,14 @@ const MangaDetail = () => {
   useEffect(() => {
     const fetchMangaDetail = async () => {
       try {
-        const mangaResponse = await axios.get(`http://localhost:4000/api/manga/${id}`);
+        const mangaResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${id}`);
         const mangaData = mangaResponse.data;
         setManga(mangaData);
   
-        const serieResponse = await axios.get(`http://localhost:4000/api/serie/${mangaData.series._id}`);
+        const serieResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/serie/${mangaData.series._id}`);
         setSerieName(serieResponse.data.name);
   
-        const categoryResponse = await axios.get(`http://localhost:4000/api/category/${mangaData.series.category._id}`);
+        const categoryResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category/${mangaData.series.category._id}`);
         setCategoryName(categoryResponse.data.name);
       } catch (error) {
         console.error('Error fetching manga detail:', error);

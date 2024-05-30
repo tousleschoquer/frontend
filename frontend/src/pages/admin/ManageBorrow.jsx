@@ -20,7 +20,7 @@ const ManageBorrow = () => {
 
     const fetchBorrows = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/borrow');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/borrow`);
         setBorrows(response.data);
       } catch (error) {
         console.error('Error fetching borrows:', error);
@@ -55,10 +55,10 @@ const ManageBorrow = () => {
       const borrowToUpdate = borrows.find(borrow => borrow._id === requestToDelete);
       // Mettre à jour la valeur 'available' de chaque manga dans l'emprunt
       await Promise.all(borrowToUpdate.manga.map(async mangaId => {
-        await axios.put(`http://localhost:4000/api/manga/${mangaId}`, { available: true });
+        await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/manga/${mangaId}`, { available: true });
       }));
       // Supprimer l'emprunt de la liste
-      await axios.delete(`http://localhost:4000/api/borrow/${requestToDelete}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/borrow/${requestToDelete}`);
       setBorrows(borrows.filter(request => request._id !== requestToDelete));
       setDialogOpen(false);
     } catch (error) {

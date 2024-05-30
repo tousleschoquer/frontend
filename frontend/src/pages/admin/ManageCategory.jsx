@@ -23,7 +23,7 @@ const ManageCategory = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/category');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/category`);
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -32,7 +32,7 @@ const ManageCategory = () => {
 
   const handleAddCategory = async () => {
     try {
-      await axios.post('http://localhost:4000/api/category', { name: newCategory });
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/category`, { name: newCategory });
       setNewCategory('');
       fetchCategories();
     } catch (error) {
@@ -42,7 +42,7 @@ const ManageCategory = () => {
 
   const handleDeleteCategory = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/category/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/category/${id}`);
       fetchCategories();
     } catch (error) {
       console.error('Error deleting category:', error);
