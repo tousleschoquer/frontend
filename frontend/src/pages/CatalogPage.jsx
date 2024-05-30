@@ -109,11 +109,6 @@ const CatalogPage = () => {
               Recherche avancée
             </Link>
           </div>
-          <div className="wishlist-button-container">
-            <Link to="/wishlist" className="wishlist-button">
-              Ma Wishlist
-            </Link>
-          </div>
         </div>
         <div className="filters">
           <input

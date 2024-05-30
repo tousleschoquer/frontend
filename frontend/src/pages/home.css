@@ -197,3 +197,10 @@ body {
 }
 
 /* Ajoutez d'autres styles si nécessaire */
+.static-text-container {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #1a227e9a;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

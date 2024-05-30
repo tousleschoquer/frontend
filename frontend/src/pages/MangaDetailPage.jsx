@@ -55,11 +55,6 @@ const MangaDetail = () => {
             Recherche avancée
           </Link>
         </div>
-        <div className="wishlist-button-container">
-          <Link to="/wishlist" className="wishlist-button">
-            Ma Wishlist
-          </Link>
-        </div>
       </div>
       <Box className="manga-detail-container">
         <Card>

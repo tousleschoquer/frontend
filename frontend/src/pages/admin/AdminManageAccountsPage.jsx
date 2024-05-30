@@ -93,13 +93,19 @@ const AdminManageAccountsPage = () => {
 
   const handleChangeUserRole = async () => {
     try {
-      const updatedUser = await axios.put(`http://localhost:4000/api/user/${selectedUserForRoleChange}`, { admin: !users.find(user => user._id === selectedUserForRoleChange).admin }); // URL du backend pour changer le rôle d'un utilisateur
-      setUsers(users.map(user => user._id === selectedUserForRoleChange ? updatedUser.data : user));
-      setChangeRoleDialogOpen(false);
+      const selectedUser = users.find(user => user._id === selectedUserForRoleChange);
+      if (!selectedUser.admin) { // Vérifier que l'utilisateur n'est pas déjà administrateur
+        const updatedUser = await axios.put(`http://localhost:4000/api/user/${selectedUserForRoleChange}`, { admin: true }); // URL du backend pour changer le rôle d'un utilisateur
+        setUsers(users.map(user => user._id === selectedUserForRoleChange ? updatedUser.data : user));
+        setChangeRoleDialogOpen(false);
+      } else {
+        console.log('User is already an admin.');
+      }
     } catch (error) {
       console.error('Error updating user role:', error);
     }
   };
+  
 
   return (
     <div>

@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import MangaList from '../components/MangaList';
-import UserReviews from '../components/UserReviews';
 
 const reviews = [
   {
@@ -34,26 +33,13 @@ const popularMangasIds = [
   '6655781b6d5002f98382b503'
 ];
 
-const newMangasIds = [
-  '665577f36d5002f98382b500',
-  '66557aba6d5002f98382b524',
-  '66557a746d5002f98382b521',
-  '6655784a6d5002f98382b506'
-];
-
 const HomePage = () => {
-  const [newMangasDetails, setNewMangasDetails] = useState([]);
   const [popularMangasDetails, setPopularMangasDetails] = useState([]);
+  const [customText, setCustomText] = useState(''); // State to manage the custom text
 
   useEffect(() => {
     const fetchMangasDetails = async () => {
       try {
-        const newDetails = await Promise.all(newMangasIds.map(async (id) => {
-          const response = await axios.get(`http://localhost:4000/api/manga/${id}`);
-          return response.data;
-        }));
-        setNewMangasDetails(newDetails);
-
         const popularDetails = await Promise.all(popularMangasIds.map(async (id) => {
           const response = await axios.get(`http://localhost:4000/api/manga/${id}`);
           return response.data;
@@ -86,21 +72,16 @@ const HomePage = () => {
             Recherche avancée
           </Link>
         </div>
-        <div className="wishlist-button-container">
-          <Link to="/wishlist" className="wishlist-button">
-            Ma Wishlist
-          </Link>
-        </div>
       </div>
       <div className="manga-grid">
         <h2>Recommendations de l'équipe</h2>
         <MangaList mangas={popularMangasDetails} />
       </div>
-      <div className="manga-grid">
-        <h2>Nouveautés</h2>
-        <MangaList mangas={newMangasDetails} />
+      <div className="static-text-container">
+        <p>Bienvenue sur notre site de mangas! Ici, vous trouverez une sélection des mangas les plus populaires et des recommandations de notre équipe. N'hésitez pas à explorer et à découvrir de nouvelles histoires passionnantes. Bonne lecture! 
+        </p>
+        <p>Ce site n'était qu'un premier pas dans le but de rendre plus instinctif, épuré et facile l'interface d'emprunt des livres par internet aux utilisateurs, qui peuvent être des enfants en plein éveil ou bien même des personnes âgées trop peu initiées aux outils informatiques. Cette facilité à naviguer vaut aussi pour les personnes s'occupant des livres, qui pourront manipuler les données en quelques clics et sans la moindre difficulté. Profitez bien !</p>
       </div>
-      <UserReviews reviews={reviews} />
       <Footer />
     </div>
   );

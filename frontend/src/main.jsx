@@ -10,14 +10,11 @@ import SignUp from './pages/signup';
 import HomePage from './pages/home';
 import CatalogPage from './pages/CatalogPage';
 import MangaDetailPage from './pages/MangaDetailPage';
-import BorrowPage from './pages/BorrowPage';
 import UserProfile from './pages/UserProfile';
 import AdvancedSearch from './pages/advanced/AdvancedSearch';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageManga from './pages/admin/ManageManga';
 import ManageBorrow from './pages/admin/ManageBorrow';
-import Wishlist from './pages/WishList';
-import NotificationsPage from './pages/NotificationsPage';
 import Feedback from './pages/Feedback';
 import FaqPage from './pages/FaqPage';
 import AdminManageAccountsPage from './pages/admin/AdminManageAccountsPage';
@@ -37,18 +34,14 @@ createRoot(document.getElementById('root')).render(
           <Route path="signin" element={<SignIn />} /> {/* page de connexion */}
           <Route path="catalog" element={<CatalogPage />} /> {/* page du catalogue */}
           <Route path="manga/:id" element={<MangaDetailPage />} /> {/* page des mangas détaillés */}
-          <Route path="borrow" element={<BorrowPage />} /> {/* page des emprunts */}
           <Route path="profile" element={<UserProfile />} /> {/* page de profil utilisateur */}
           <Route path="search" element={<AdvancedSearch />} /> {/* page de recherche avancée */}
           <Route path="admin" element={<AdminDashboard />} /> {/* page du dashborad pour l'admin */}
           <Route path="admin/manage-manga" element={<ManageManga />} /> {/* page de gestion des mangas pour l'admin */}
-          <Route path="admin/manage-borrow" element={<ManageBorrow />} /> {/* page de gestion des emprunts pour l'admin */}
           <Route path="admin/manage-accounts" element={<AdminManageAccountsPage />} /> {/* page de gestion des comptes */}
           <Route path="admin/manage-series" element={<ManageSeries />} /> {/* page de gestion des series */}
           <Route path="admin/manage-categories" element={<ManageCategory />} /> {/* page de gestion des categories */}
           <Route path="admin/manage-borrows" element={<ManageBorrow />} /> {/* page de gestion des auteurs */}
-          <Route path="wishlist" element={<Wishlist />} /> {/* page de la wishList */}
-          <Route path="notifications" element={<NotificationsPage />} /> {/* page de la wishList */}
           <Route path="feedback" element={<Feedback />} /> {/* page des notations */}
           <Route path="faq" element={<FaqPage />} /> {/* page de la faq et du service client */}
           <Route path="proposal" element={<SeriesProposalPage />} /> {/* page de proposition de nouvelle serie*/}
